@@ -30,7 +30,7 @@ module.exports = function (app) {
     app.post('/api/notes', function (req, res) {
         console.log("Add new note");
         //Read the JSON file 
-        fs.readFile("./db/db.json", "utf8", (err, response) => {
+        fs.readFile("./db/notes.json", "utf8", (err, response) => {
             //convert the response to JSON 
             let allNotes = JSON.parse(response);
             //GRAB ID OF THE LAST ELEMENT FROM THE JSON FILE 
@@ -44,7 +44,7 @@ module.exports = function (app) {
 
             allNotes = [...allNotes, newNote];
 
-            fs.writeFile("./db/db.json", JSON.stringify(allNotes), err => {
+            fs.writeFile("./db/notes.json", JSON.stringify(allNotes), err => {
 
                 if (err) throw res.status(500).json(err);
 

@@ -5,10 +5,10 @@ var notesData = require('../db/notes.json');
 //Routing
 module.exports = function(app) {
     //API GET Routes
-    app.get('/api/notes', function (req, res) {
-
+    app.get('/api/notes/', function (req, res) {
+        console.log("Inside Get routes");
         //Read the JSON file 
-        fs.readFile("./db/db.json", "utf8", (err, response) => {
+        fs.readFile("./db/notes.json", "utf8", (err, response) => {
             if (err) throw err;
 
             let parsedNotes;
@@ -26,15 +26,10 @@ module.exports = function(app) {
 
     });
 
-
-  // API POST Request -- need to add to file research
-  app.post('/api/notes/', function(req, res) {
-   
-  });
-
   
   // DELETE "/api/notes" deletes the note with an id equal to req.params.id
   app.delete('/api/notes/:id', (req, res) => {
+      console.log("Delete Note!" , req.param.id);
     
   });
 

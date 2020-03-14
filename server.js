@@ -16,8 +16,8 @@ app.use(express.static("public"));
 
 //Router points server to route files
 // These routes give out server a "map" of how to respond when users visit or request data from various URLS
-app.use("/api", apiRoutes);
-app.use("/", htmlRoutes);
+require('./routes/htmlRoutes')(app);
+require('./routes/apiRoutes')(app);
 
 // Start the server on the port
 app.listen(PORT, () => console.log(`Listening on PORT: ${PORT}`));

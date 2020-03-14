@@ -1,5 +1,11 @@
 # Express-Note-Taker
-This application will use an express backend and save and retrieve note data from a JSON file.
+This application will use an express backend and save and retrieve note data from a JSON file.This application will be invoked with the following command:
+
+```sh
+
+node server.js
+
+```
 
 ## User Story
 

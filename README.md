@@ -26,7 +26,7 @@ SO THAT I can organize my thoughts and keep track of tasks I need to complete
 ### Built With : 
     * Node 
     * Express 
-    * Javascript 
+    * Javascript / JQuery
     * HTML 
     * CSS
 

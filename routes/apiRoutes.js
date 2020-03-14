@@ -4,10 +4,27 @@ var notesData = require('../db/notes.json');
 
 //Routing
 module.exports = function(app) {
-  //API GET Routes
-  app.get('/api/notes', function(req, res) {
-    res.json(notesData);
-  });
+    //API GET Routes
+    app.get('/api/notes', function (req, res) {
+
+        //Read the JSON file 
+        fs.readFile("./db/db.json", "utf8", (err, response) => {
+            if (err) throw err;
+
+            let parsedNotes;
+
+            // If notes isn't an array or can't be turned into one, send back a new empty array
+            try {
+                parsedNotes = [].concat(JSON.parse(response));
+            } catch (err) {
+                parsedNotes = [];
+            }
+
+            // return parsedNotes;
+            res.json(parsedNotes);
+        });
+
+    });
 
 
   // API POST Request -- need to add to file research
@@ -20,5 +37,5 @@ module.exports = function(app) {
   app.delete('/api/notes/:id', (req, res) => {
     
   });
-  
+
 };

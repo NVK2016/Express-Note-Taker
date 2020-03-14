@@ -3,7 +3,7 @@ const fs = require('fs');
 var notesData = require('../db/notes.json');
 
 //Routing
-module.exports = function(app) {
+module.exports = function (app) {
     //API GET Routes
     app.get('/api/notes/', function (req, res) {
         console.log("Inside Get routes");
@@ -26,11 +26,28 @@ module.exports = function(app) {
 
     });
 
-  
-  // DELETE "/api/notes" deletes the note with an id equal to req.params.id
-  app.delete('/api/notes/:id', (req, res) => {
-      console.log("Delete Note!" , req.param.id);
-    
-  });
 
-};
+    // DELETE "/api/notes" deletes the note with an id equal to req.params.id
+    app.delete('/api/notes/:id', (req, res) => {
+
+        let noteId = req.params.id;
+        console.log("trying to delte", noteId);
+
+        fs.readFile("./db/notes.json", "utf8", (err, response) => {
+
+            if (err) throw err;
+
+            const allNotes = JSON.parse(response);
+            //   console.log("All notes", allNotes);
+            const newAllNotes = allNotes.filter(note => note.id != noteId);
+
+            fs.writeFile("./db/notes.json", JSON.stringify(newAllNotes, null, 2), err => {
+                if (err) throw res.status(500).json(err);
+                res.json(notesData);
+                console.log("Note deleted!", noteId);
+            });
+
+        });
+
+    });
+}

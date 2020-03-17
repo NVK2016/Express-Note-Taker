@@ -26,6 +26,23 @@ module.exports = function (app) {
 
     });
 
+    // app.post('/api/notes/', function(req, res) {
+    //     console.log(data, "New Note", req.body);
+    //     //Read the JSON file 
+    //     fs.readFile("./db/db.json", "utf8", (err, response) => {
+    //         //convert the response to JSON 
+    //         let allNotes = JSON.parse(response);
+    //         console.log("NN", req.body, allNotes);
+    //         allNotes.push(req.body);
+    //         //Update the file with new note info 
+    //         fs.writeFile('./db/notes.json', JSON.stringify(allNotes), err => {
+    //             if (err) throw err;
+    //             res.json(allNotes);
+    //             console.log('Note Added!', allNotes);
+    //         });
+    //     });
+    // });
+
     // API POST Request
     app.post('/api/notes', function (req, res) {
         console.log("Add new note");

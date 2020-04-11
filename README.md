@@ -35,7 +35,9 @@ SO THAT I can organize my thoughts and keep track of tasks I need to complete
 
 Heroku Access Link:  https://express-note-taker-11.herokuapp.com/ 
 
+Assignment taken at UC Berkeley Extensions - Bootcamp SFO
+
 ### Owner : 
 
 * Namita Shenai 
-* Trilogy Eaducation - Bootcamp Assignment 
+

@@ -1,10 +1,10 @@
 //Load data by linking routes
 const fs = require('fs');
-var notesData = require('../db/notes.json');
+// var notesData = require('../db/notes.json');
 
 //Routing
 module.exports = function (app) {
-    //API GET Routes
+     // GET "/api/notes" responds with all notes from the database - db.json 
     app.get('/api/notes/', function (req, res) {
         console.log("Inside Get routes");
         //Read the JSON file 
@@ -26,23 +26,6 @@ module.exports = function (app) {
 
     });
 
-    // app.post('/api/notes/', function(req, res) {
-    //     console.log(data, "New Note", req.body);
-    //     //Read the JSON file 
-    //     fs.readFile("./db/db.json", "utf8", (err, response) => {
-    //         //convert the response to JSON 
-    //         let allNotes = JSON.parse(response);
-    //         console.log("NN", req.body, allNotes);
-    //         allNotes.push(req.body);
-    //         //Update the file with new note info 
-    //         fs.writeFile('./db/notes.json', JSON.stringify(allNotes), err => {
-    //             if (err) throw err;
-    //             res.json(allNotes);
-    //             console.log('Note Added!', allNotes);
-    //         });
-    //     });
-    // });
-
     // API POST Request
     app.post('/api/notes', function (req, res) {
         console.log("Add new note");
@@ -51,16 +34,20 @@ module.exports = function (app) {
             //convert the response to JSON 
             let allNotes = JSON.parse(response);
             //GRAB ID OF THE LAST ELEMENT FROM THE JSON FILE 
-            var lastID = allNotes[allNotes.length - 1].id;
-            //Increment to generate a new ID 
-            lastID = lastID + 1;
+            // Increment `lastId` and assign it to `newNote.id`
+            if(allNotes.length > 0) {
+                var lastID = allNotes[allNotes.length - 1].id;
+                lastID = lastID + 1;
+            } else {
+                var lastID = "1"
+            }
             //Append the new id to the user created note  
             const newNote = { ...req.body, id: lastID };
 
-            console.log(newNote);
+            // console.log(newNote);
 
             allNotes = [...allNotes, newNote];
-
+            // Get all notes, add the new note, write all the updated notes, return the newNote
             fs.writeFile("./db/notes.json", JSON.stringify(allNotes), err => {
 
                 if (err) throw res.status(500).json(err);
@@ -85,12 +72,13 @@ module.exports = function (app) {
             if (err) throw err;
 
             const allNotes = JSON.parse(response);
-            //   console.log("All notes", allNotes);
-            const newAllNotes = allNotes.filter(note => note.id != noteId);
 
-            fs.writeFile("./db/notes.json", JSON.stringify(newAllNotes, null, 2), err => {
+             // Get all notes, remove the note with the given id, write the filtered notes
+            const filteredNotes = allNotes.filter(note => note.id != noteId);
+
+            fs.writeFile("./db/notes.json", JSON.stringify(filteredNotes, null, 2), err => {
                 if (err) throw res.status(500).json(err);
-                res.json(notesData);
+                res.json(filteredNotes);
                 console.log("Note deleted!", noteId);
             });
 

@@ -14,9 +14,7 @@ AS A user, I want to be able to write and save notes
 I WANT to be able to delete notes I've written before
 
 SO THAT I can organize my thoughts and keep track of tasks I need to complete
-### Deployed Link 
 
-Heroku Access Link:  https://express-note-taker-11.herokuapp.com/ 
 
 ### Key Features 
 
@@ -28,10 +26,16 @@ Heroku Access Link:  https://express-note-taker-11.herokuapp.com/
 
 ### Built With : 
     * Node 
-    * Express 
-    * Javascript / JQuery
+    * Express Server
+    * Javascript / JQuery / JSON 
     * HTML 
-    * CSS
+    * CSS / Bootstrap 
+    
+### Deployed Link 
+
+Heroku Access Link:  https://express-note-taker-11.herokuapp.com/ 
 
 ### Owner : 
+
 * Namita Shenai 
+* Trilogy Eaducation - Bootcamp Assignment 
